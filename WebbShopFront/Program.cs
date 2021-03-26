@@ -1,12 +1,14 @@
 ﻿using System;
+using WebbShopFrontInlamning.Controllers;
 
-namespace WebbShopFront
+namespace WebbShopFrontInlamning
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Home home = new Home();
+            home.Run();
         }
     }
 }
