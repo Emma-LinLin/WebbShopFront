@@ -9,36 +9,39 @@ namespace WebbShopFrontInlamning.Controllers
 {
     class Purchase
     {
-        private int id;
-
         public void Run(int userId)
         {
-            id = userId;
-
             PurchaseViews.StartPage();
             new Book().FindAllAvailableBooks();
-            PurchaseViews.SelectItem();
+            MessageViews.DisplaySelectMessage();
+            MessageViews.DisplayReturnMessage();
 
-            var input = InputHelper.ParseInput();
-            if(input == 0)
+            var bookId = InputHelper.ParseInput();
+            if(bookId == 0)
             {
                 return;
             }
 
+            PurchaseViews.DisplayPurchaseMeny();
+            var input = InputHelper.ParseInput();
             switch (input)
             {
                 case 1:
                     ViewDetails(input);
                     break;
                 case 2:
-                    PurchaseBook(id, input);
+                    PurchaseBook(userId, input);
+                    break;
+                default:
+                    MessageViews.DisplayNonAvailableMessage();
                     break;
             }
         }
 
         public void ViewDetails(int bookId)
         {
-            var bookDetails = new Book().GetBook(bookId);
+            WebbShopAPI api = new WebbShopAPI();
+            var bookDetails = api.GetBook(bookId);
             if(bookDetails != string.Empty)
             {
                 BookViews.DisplayDetails(bookDetails);

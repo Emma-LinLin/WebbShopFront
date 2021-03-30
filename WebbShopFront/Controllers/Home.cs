@@ -33,6 +33,7 @@ namespace WebbShopFrontInlamning.Controllers
                         new Book().Run();
                         break;
                     case 4:
+                        new Purchase().Run(userId);
                         break;
                     case 5:
                         userId = new Admin().Run();

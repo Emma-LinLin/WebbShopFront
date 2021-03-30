@@ -25,27 +25,24 @@ namespace WebbShopFrontInlamning.Views
             foreach (var book in listOfBooks)
             {
                 Console.WriteLine($"{book.ID}.{book.Title} - By: {book.Author}");
-                Console.WriteLine();
             }
         }
 
         public static void DisplayAvailableBooks(List<Books> listOfBooks)
         {
-            Console.WriteLine("Search result for available books: ");
+            Console.WriteLine("Result for available books: ");
             foreach (var book in listOfBooks)
             {
                 Console.WriteLine($"{book.ID}.{book.Title} - By: {book.Author}\n Amount: {book.Amount}");
-                Console.WriteLine();
             }
         }
 
         public static void DisplayCategoryList(List<BookCategory> listOfCategories)
         {
-            Console.WriteLine("Search result for categories: ");
+            Console.WriteLine("Result for categories: ");
             foreach (var category in listOfCategories)
             {
                 Console.WriteLine($"{category.ID}.{category.Genere}");
-                Console.WriteLine();
             }
         }
 

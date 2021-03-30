@@ -16,6 +16,11 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine("Please select one of the above: ");
         }
 
+        public static void DisplayReturnMessage()
+        {
+            Console.WriteLine("(Press [0] to return to previous page)");
+        }
+
         public static void DisplaySuccessMessage()
         {
             Console.WriteLine("Success!");

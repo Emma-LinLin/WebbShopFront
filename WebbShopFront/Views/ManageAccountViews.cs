@@ -10,14 +10,16 @@ namespace WebbShopFrontInlamning.Views
         {
             Console.WriteLine("Register new user");
             Console.WriteLine();
-            Console.WriteLine("Choose user name: ");
-            Console.WriteLine("Choose password: ");
-            Console.WriteLine("Verify password: ");
+            Console.WriteLine("Please fill in the following");
+            Console.WriteLine("1. Choose user name: ");
+            Console.WriteLine("2. Choose password: ");
+            Console.WriteLine("3. Verify password: ");
         }
+
         public static void RegisterSuccess()
         {
             Console.WriteLine();
-            Console.WriteLine("Sucessfully registered! You can now login");
+            Console.WriteLine("Sucessfully registered!");
             Console.WriteLine();
         }
         public static void RegisterFailed()
@@ -30,8 +32,9 @@ namespace WebbShopFrontInlamning.Views
         {
             Console.WriteLine("Register new user");
             Console.WriteLine();
-            Console.WriteLine("Choose user name: ");
-            Console.WriteLine("Choose password: ");
+            Console.WriteLine("Please fill in the following");
+            Console.WriteLine("1. Choose user name: ");
+            Console.WriteLine("2. Choose password: ");
         }
     }
 }

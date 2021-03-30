@@ -8,10 +8,11 @@ namespace WebbShopFrontInlamning.Views
     {
         public static void LoginPage()
         {
-            Console.WriteLine("Log in");
+            Console.WriteLine("Login page");
             Console.WriteLine();
-            Console.WriteLine("User name: ");
-            Console.WriteLine("Password: ");
+            Console.WriteLine("Please fill in the following: ");
+            Console.WriteLine("1. User name: ");
+            Console.WriteLine("2. Password: ");
         }
         public static void LoginSuccess()
         {
