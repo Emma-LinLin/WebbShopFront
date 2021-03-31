@@ -6,8 +6,14 @@ using WebbShopInlamningsUppgift;
 
 namespace WebbShopFrontInlamning.Controllers
 {
+    /// <summary>
+    /// Controls the user flow
+    /// </summary>
     class User
     {
+        /// <summary>
+        /// Allows you to register a new account
+        /// </summary>
         public void RegisterAccount()
         {
             ManageAccountViews.RegisterAccount();
@@ -24,6 +30,14 @@ namespace WebbShopFrontInlamning.Controllers
 
             ManageAccountViews.RegisterFailed();
         }
+
+        /// <summary>
+        /// Checks the status of the registration
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userPassword"></param>
+        /// <param name="verifyPassword"></param>
+        /// <returns>boolean, true if success, false if not</returns>
         private bool CheckRegistrationStatus(string userName, string userPassword, string verifyPassword)
         {
             if(userName != "" && userPassword != "" && verifyPassword != "")

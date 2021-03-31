@@ -7,37 +7,57 @@ using WebbShopInlamningsUppgift;
 
 namespace WebbShopFrontInlamning.Controllers
 {
+    /// <summary>
+    /// Controls the purchase functionality
+    /// </summary>
     class Purchase
     {
+        /// <summary>
+        /// Runs the purchase functionality page
+        /// </summary>
+        /// <param name="userId"></param>
         public void Run(int userId)
         {
             PurchaseViews.StartPage();
-            new Book().FindAllAvailableBooks();
-            MessageViews.DisplaySelectMessage();
-            MessageViews.DisplayReturnMessage();
 
-            var bookId = InputHelper.ParseInput();
-            if(bookId == 0)
+            bool keepGoing = true;
+            while (keepGoing)
             {
-                return;
-            }
-
-            PurchaseViews.DisplayPurchaseMeny();
-            var input = InputHelper.ParseInput();
-            switch (input)
-            {
-                case 1:
-                    ViewDetails(input);
+                new Book().FindAllAvailableBooks();
+                MessageViews.DisplaySelectMessage();
+                MessageViews.DisplayReturnMessage();
+                var bookId = InputHelper.ParseInput();
+                if (bookId == 0)
+                {
                     break;
-                case 2:
-                    PurchaseBook(userId, input);
+                }
+                PurchaseViews.DisplayPurchaseMeny();
+                MessageViews.DisplayReturnMessage();
+                var input = InputHelper.ParseInput();
+                if (input == 0)
+                {
                     break;
-                default:
-                    MessageViews.DisplayNonAvailableMessage();
-                    break;
+                }
+                switch (input)
+                {
+                    case 1:
+                        ViewDetails(bookId);
+                        break;
+                    case 2:
+                        PurchaseBook(userId, bookId);
+                        keepGoing = false;
+                        break;
+                    default:
+                        MessageViews.DisplayNonAvailableMessage();
+                        break;
+                }
             }
         }
 
+        /// <summary>
+        /// Allows you to view details for a specific book
+        /// </summary>
+        /// <param name="bookId"></param>
         public void ViewDetails(int bookId)
         {
             WebbShopAPI api = new WebbShopAPI();
@@ -49,6 +69,12 @@ namespace WebbShopFrontInlamning.Controllers
             }
             MessageViews.DisplayErrorMessage();
         }
+
+        /// <summary>
+        /// Allows you to purchase chosen book
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="bookId"></param>
         public void PurchaseBook(int userId, int bookId)
         {
             WebbShopAPI api = new WebbShopAPI();

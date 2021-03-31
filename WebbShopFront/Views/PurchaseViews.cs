@@ -4,8 +4,14 @@ using System.Text;
 
 namespace WebbShopFrontInlamning.Views
 {
+    /// <summary>
+    /// Displays view for Purchase
+    /// </summary>
     class PurchaseViews
     {
+        /// <summary>
+        /// Displays start page of purchase
+        /// </summary>
         public static void StartPage()
         {
             Console.WriteLine("What are you in the mood for?");
@@ -13,6 +19,9 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Displays an option to view or purchase
+        /// </summary>
         public static void DisplayPurchaseMeny()
         {
             Console.WriteLine();

@@ -4,8 +4,15 @@ using System.Text;
 
 namespace WebbShopFrontInlamning.Helpers
 {
+    /// <summary>
+    /// InputHelper main purpose is to check user input
+    /// </summary>
     public class InputHelper
     {
+        /// <summary>
+        /// Parsing input, if the input isn't an integer the user will be asked to try again
+        /// </summary>
+        /// <returns>boolean, true if success, false if not</returns>
         public static int ParseInput()
         {
             int value;

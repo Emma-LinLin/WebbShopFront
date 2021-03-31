@@ -5,8 +5,14 @@ using WebbShopInlamningsUppgift.Models;
 
 namespace WebbShopFrontInlamning.Views
 {
+    /// <summary>
+    /// Displays the view for books
+    /// </summary>
     class BookViews
     {
+        /// <summary>
+        /// Displays the browse book meny
+        /// </summary>
         public static void BookMeny()
         {
             Console.WriteLine("Browse books");
@@ -19,6 +25,10 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine("6. Return to main meny");
         }
 
+        /// <summary>
+        /// Displays the search result for books
+        /// </summary>
+        /// <param name="listOfBooks"></param>
         public static void DisplayBookList(List<Books> listOfBooks)
         {
             Console.WriteLine("Search result for books: ");
@@ -28,6 +38,10 @@ namespace WebbShopFrontInlamning.Views
             }
         }
 
+        /// <summary>
+        /// Displays all available books
+        /// </summary>
+        /// <param name="listOfBooks"></param>
         public static void DisplayAvailableBooks(List<Books> listOfBooks)
         {
             Console.WriteLine("Result for available books: ");
@@ -37,6 +51,10 @@ namespace WebbShopFrontInlamning.Views
             }
         }
 
+        /// <summary>
+        /// Displays the search result of categories
+        /// </summary>
+        /// <param name="listOfCategories"></param>
         public static void DisplayCategoryList(List<BookCategory> listOfCategories)
         {
             Console.WriteLine("Result for categories: ");
@@ -46,11 +64,18 @@ namespace WebbShopFrontInlamning.Views
             }
         }
 
+        /// <summary>
+        /// Displays details for a book
+        /// </summary>
+        /// <param name="details"></param>
         public static void DisplayDetails(string details)
         {
             Console.WriteLine(details);
         }
 
+        /// <summary>
+        /// Displays information needed to search for an item
+        /// </summary>
         public static void SearchPage()
         {
             Console.WriteLine();

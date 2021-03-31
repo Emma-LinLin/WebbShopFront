@@ -4,8 +4,14 @@ using System.Text;
 
 namespace WebbShopFrontInlamning.Views
 {
+    /// <summary>
+    /// Displays the view for Home
+    /// </summary>
     class HomeView
     {
+        /// <summary>
+        /// Displays main meny
+        /// </summary>
         public static void MainMeny()
         {
             Console.WriteLine("Welcome to the book store!");

@@ -8,10 +8,17 @@ using WebbShopInlamningsUppgift;
 
 namespace WebbShopFrontInlamning.Controllers
 {
+    /// <summary>
+    /// Controls the admin flow
+    /// </summary>
     class Admin
     {
         private int userId;
         
+        /// <summary>
+        /// Runs the Admin funtionality-page
+        /// </summary>
+        /// <returns>integer, user id if admin, 0 if not</returns>
         public int Run()
         {
             AdminView.StartPage();
@@ -101,10 +108,15 @@ namespace WebbShopFrontInlamning.Controllers
             return userId;
         }
 
-        public bool CheckAdmin(int userId)
+        /// <summary>
+        /// Checks an random admin functionality to see if user is admin
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>boolean true if successful, false if not</returns>
+        private bool CheckAdmin(int userId)
         {
             WebbShopAPI api = new WebbShopAPI();
-            //Checking random adminfunctionality, if the return value is larger than 0 the userId is valid.
+            //if the return value is larger than 0 the userId is valid.
             var list = api.ListUsers(userId);
             if(list.Count > 0)
             {
@@ -113,7 +125,11 @@ namespace WebbShopFrontInlamning.Controllers
             return false; 
         }
 
-        public void AddBook(int adminId)
+        /// <summary>
+        /// Allows an admin user to add a new book
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void AddBook(int adminId)
         {
             AdminView.AddBookPage();
             string title = Console.ReadLine();
@@ -134,7 +150,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void AddBookToCategory(int adminId)
+        /// <summary>
+        /// Allows an admin user to add a book to category
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void AddBookToCategory(int adminId)
         {
             new Book().FindAllAvailableBooks();
             MessageViews.DisplaySelectMessage();
@@ -166,7 +186,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void AddCategory(int adminId)
+        /// <summary>
+        /// Allows admin user to add a new category
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void AddCategory(int adminId)
         {
             AdminView.AddCategoryPage();
             var genere = Console.ReadLine();
@@ -183,7 +207,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void AddUser(int adminId)
+        /// <summary>
+        /// Allows admin user to add a new user
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void AddUser(int adminId)
         {
            ManageAccountViews.AddAccount();
             var userName = Console.ReadLine();
@@ -201,7 +229,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void ActivateUser(int adminId)
+        /// <summary>
+        /// Allows admin user to activate user
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void ActivateUser(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var listOfUsers = api.ListUsers(adminId);
@@ -227,7 +259,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void DemoteUser(int adminId)
+        /// <summary>
+        /// Allows admin user to demote another admin user
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void DemoteUser(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var listOfUsers = api.ListUsers(adminId);
@@ -253,7 +289,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void InactivateUser(int adminId)
+        /// <summary>
+        /// Allows admin user to inactivate user
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void InactivateUser(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var listOfUsers = api.ListUsers(adminId);
@@ -279,7 +319,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void PromoteUser(int adminId)
+        /// <summary>
+        /// Allows Admin user to promote another user to admin
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void PromoteUser(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var listOfUsers = api.ListUsers(adminId);
@@ -305,7 +349,11 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
-        public void SetAmount(int adminId)
+        /// <summary>
+        /// Allows admin user to set the amount of a book
+        /// </summary>
+        /// <param name="adminId"></param>
+        private void SetAmount(int adminId)
         {
             new Book().FindAllAvailableBooks();
             AdminView.SetAmountPage();
@@ -329,6 +377,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows an admin user to view all users
+        /// </summary>
+        /// <param name="adminId"></param>
         public void ViewAllUsers(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
@@ -342,6 +394,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows an admin user to view all sold books
+        /// </summary>
+        /// <param name="adminId"></param>
         public void ViewAllSoldItems(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
@@ -354,6 +410,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows an admin user to see which customer bought the most books
+        /// </summary>
+        /// <param name="adminId"></param>
         public void ViewBestCustomer(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
@@ -366,6 +426,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows admin user to view the sum of all sold books
+        /// </summary>
+        /// <param name="adminId"></param>
         public void ViewTotalIncome(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
@@ -378,6 +442,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows an admin user to find another user
+        /// </summary>
+        /// <param name="adminId"></param>
         public void FindUser(int adminId)
         {
             AdminView.SearchPage();
@@ -396,6 +464,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows an admin user to update an existing book
+        /// </summary>
+        /// <param name="adminId"></param>
         public void UpdateBook(int adminId)
         {
             new Book().FindAllAvailableBooks();
@@ -424,6 +496,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows admin user to update an existing category
+        /// </summary>
+        /// <param name="adminId"></param>
         public void UpdateCategory(int adminId)
         {
             new Book().ViewAllCategories();
@@ -450,6 +526,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows admin user to delete book
+        /// </summary>
+        /// <param name="adminId"></param>
         public void DeleteBook(int adminId)
         {
             new Book().FindAllAvailableBooks();
@@ -472,6 +552,10 @@ namespace WebbShopFrontInlamning.Controllers
             MessageViews.DisplayErrorMessage();
         }
 
+        /// <summary>
+        /// Allows admin user to delete book category
+        /// </summary>
+        /// <param name="adminId"></param>
         public void DeleteCategory(int adminId)
         {
             new Book().ViewAllCategories();

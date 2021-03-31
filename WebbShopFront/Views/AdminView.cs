@@ -5,13 +5,22 @@ using WebbShopInlamningsUppgift.Models;
 
 namespace WebbShopFrontInlamning.Views
 {
+    /// <summary>
+    /// Displays the view for Admin
+    /// </summary>
     class AdminView
     {
+        /// <summary>
+        /// Displays the start page, asking user to login upon entering
+        /// </summary>
         public static void StartPage()
         {
             Console.WriteLine("You have to be logged in to proceed.");
         }
 
+        /// <summary>
+        /// Displays Admin meny
+        /// </summary>
         public static void AdminPage()
         {
             Console.WriteLine("Admin page");
@@ -38,11 +47,17 @@ namespace WebbShopFrontInlamning.Views
 
         }
 
+        /// <summary>
+        /// Displays fail message if user is not admin
+        /// </summary>
         public static void VerifyAdminFailed()
         {
             Console.WriteLine("You're not authorized.");
         }
 
+        /// <summary>
+        /// Displays the information needed to add book
+        /// </summary>
         public static void AddBookPage()
         {
             Console.WriteLine();
@@ -55,6 +70,9 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine("4. Amount");
         }
 
+        /// <summary>
+        /// Displays the information needed to add category
+        /// </summary>
         public static void AddCategoryPage()
         {
             Console.WriteLine();
@@ -64,6 +82,9 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine("1. Genere");
         }
 
+        /// <summary>
+        /// Displays the information needed to update book
+        /// </summary>
         public static void UpdateBookPage()
         {
             Console.WriteLine();
@@ -75,14 +96,19 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine("3. Price");
         }
 
+        /// <summary>
+        /// Displays the information needed to update category
+        /// </summary>
         public static void UpdateCategoryPage()
         {
             Console.WriteLine();
             Console.WriteLine("Please fill in the following");
             Console.WriteLine("1. genere");
         }
-        
 
+        /// <summary>
+        /// Displays the information needed to set a new book amount
+        /// </summary>
         public static void SetAmountPage()
         {
             Console.WriteLine();
@@ -93,24 +119,36 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine("2. New amount: ");
         }
 
+        /// <summary>
+        /// Displays the information needed to search
+        /// </summary>
         public static void SearchPage()
         {
             Console.WriteLine();
             Console.WriteLine("Please enter search word: ");
         }
 
+        /// <summary>
+        /// Displays the information for best customer
+        /// </summary>
         public static void DisplayBestCustomer(int customerId)
         {
             Console.WriteLine();
             Console.WriteLine($"Best customer with the most bought books, has ID: {customerId}");
         }
 
+        /// <summary>
+        /// Displays the information for the total of sold books
+        /// </summary>
         public static void DisplayMoneyEarned(int totalIncome)
         {
             Console.WriteLine();
             Console.WriteLine($"Total income: {totalIncome}");
         }
 
+        /// <summary>
+        /// Displays a list of users
+        /// </summary>
         public static void DisplayUsers(List<Users> listOfUsers)
         {
             Console.WriteLine();
@@ -121,6 +159,9 @@ namespace WebbShopFrontInlamning.Views
             }
         }
 
+        /// <summary>
+        /// Displays all sold books
+        /// </summary>
         public static void DisplaySoldItems(List<SoldBooks> listOfSoldItems)
         {
             Console.WriteLine("Search result for books: ");

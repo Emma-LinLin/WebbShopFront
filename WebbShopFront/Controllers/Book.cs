@@ -9,10 +9,16 @@ using WebbShopInlamningsUppgift.Models;
 
 namespace WebbShopFrontInlamning.Controllers
 {
+    /// <summary>
+    /// Controls the book flow
+    /// </summary>
     class Book
     {
         private WebbShopAPI api = new WebbShopAPI();
 
+        /// <summary>
+        /// Runs the book functionality page
+        /// </summary>
         public void Run()
         {
             bool keepGoing = true;
@@ -48,6 +54,10 @@ namespace WebbShopFrontInlamning.Controllers
             }
         }
 
+        /// <summary>
+        /// Uses all book categories to fetch all books in each category
+        /// </summary>
+        /// <returns></returns>
         public List<Books> GetAllBooks()
         {
             List<Books> listOfBooks = new List<Books>();
@@ -65,6 +75,9 @@ namespace WebbShopFrontInlamning.Controllers
             return new List<Books>();
         }
 
+        /// <summary>
+        /// Allows you to view all book categories
+        /// </summary>
         public void ViewAllCategories()
         {
             var listOfCategories = api.GetCategories().ToList();
@@ -77,6 +90,9 @@ namespace WebbShopFrontInlamning.Controllers
             return;
         }
 
+        /// <summary>
+        /// Allows you to search for a specific category
+        /// </summary>
         public void SearchFunctionCategories()
         {
             BookViews.SearchPage();
@@ -95,6 +111,9 @@ namespace WebbShopFrontInlamning.Controllers
             return;
         }
 
+        /// <summary>
+        /// Allows you to search for books based on author
+        /// </summary>
         public void SearchBooksByAuthor()
         {
             BookViews.SearchPage();
@@ -113,6 +132,9 @@ namespace WebbShopFrontInlamning.Controllers
             return;
         }
 
+        /// <summary>
+        /// Allows you to search for books based to title
+        /// </summary>
         public void SearchBooksByTitle()
         {
             BookViews.SearchPage();
@@ -131,6 +153,9 @@ namespace WebbShopFrontInlamning.Controllers
             return;
         }
 
+        /// <summary>
+        /// Allows you to view all available books
+        /// </summary>
         public void FindAllAvailableBooks()
         {
             var listOfBooks = GetAllBooks();

@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 using WebbShopFrontInlamning.Helpers;
 using WebbShopFrontInlamning.Views;
+using WebbShopInlamningsUppgift;
 using WebbShopInlamningsUppgift.Database;
 
 namespace WebbShopFrontInlamning.Controllers
 {
+    /// <summary>
+    /// Controls the home functionality
+    /// </summary>
     class Home
     {
         private int userId;
 
+        /// <summary>
+        /// Runs the home functionality page
+        /// </summary>
         public void Run()
         {
             Seeder.Seed();
@@ -20,7 +27,11 @@ namespace WebbShopFrontInlamning.Controllers
             {
                 HomeView.MainMeny();
                 var input = InputHelper.ParseInput();
-
+                if(userId > 0)
+                {
+                    WebbShopAPI api = new WebbShopAPI();
+                    api.Ping(userId);
+                }
                 switch (input)
                 {
                     case 1:
@@ -43,6 +54,7 @@ namespace WebbShopFrontInlamning.Controllers
                         keepGoing = false;
                         break;
                     default:
+                        MessageViews.DisplayNonAvailableMessage();
                         break;
                 }
             }
