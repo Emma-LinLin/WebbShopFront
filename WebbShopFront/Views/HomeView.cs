@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WebbShopFrontInlamning.Views
 {
@@ -14,6 +12,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void MainMeny()
         {
+            Console.WriteLine();
             Console.WriteLine("Welcome to the book store!");
             Console.WriteLine();
             Console.WriteLine("1. Login");
@@ -22,7 +21,6 @@ namespace WebbShopFrontInlamning.Views
             Console.WriteLine("4. Purchase");
             Console.WriteLine("5. Admin");
             Console.WriteLine("6. Logout");
-            Console.WriteLine();
         }
     }
 }

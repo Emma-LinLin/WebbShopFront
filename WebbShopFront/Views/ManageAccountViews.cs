@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WebbShopFrontInlamning.Views
 {
@@ -14,7 +12,6 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void RegisterAccount()
         {
-            Console.WriteLine("Register new user");
             Console.WriteLine();
             Console.WriteLine("Please fill in the following");
             Console.WriteLine("1. Choose user name: ");
@@ -28,8 +25,7 @@ namespace WebbShopFrontInlamning.Views
         public static void RegisterSuccess()
         {
             Console.WriteLine();
-            Console.WriteLine("Sucessfully registered!");
-            Console.WriteLine();
+            Console.WriteLine("Sucessfully registered! You can now log in.");
         }
 
         /// <summary>
@@ -39,7 +35,6 @@ namespace WebbShopFrontInlamning.Views
         {
             Console.WriteLine();
             Console.WriteLine("Oops, something went wrong! Try with another user name");
-            Console.WriteLine();
         }
 
         /// <summary>
@@ -47,7 +42,6 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void AddAccount()
         {
-            Console.WriteLine("Register new user");
             Console.WriteLine();
             Console.WriteLine("Please fill in the following");
             Console.WriteLine("1. Choose user name: ");

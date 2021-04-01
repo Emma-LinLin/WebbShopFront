@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using WebbShopInlamningsUppgift.Models;
 
 namespace WebbShopFrontInlamning.Views
@@ -15,7 +14,6 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void BookMeny()
         {
-            Console.WriteLine("Browse books");
             Console.WriteLine();
             Console.WriteLine("1. View all categories");
             Console.WriteLine("2. Search category");
@@ -31,6 +29,7 @@ namespace WebbShopFrontInlamning.Views
         /// <param name="listOfBooks"></param>
         public static void DisplayBookList(List<Books> listOfBooks)
         {
+            Console.WriteLine();
             Console.WriteLine("Search result for books: ");
             foreach (var book in listOfBooks)
             {
@@ -44,6 +43,7 @@ namespace WebbShopFrontInlamning.Views
         /// <param name="listOfBooks"></param>
         public static void DisplayAvailableBooks(List<Books> listOfBooks)
         {
+            Console.WriteLine();
             Console.WriteLine("Result for available books: ");
             foreach (var book in listOfBooks)
             {
@@ -57,6 +57,7 @@ namespace WebbShopFrontInlamning.Views
         /// <param name="listOfCategories"></param>
         public static void DisplayCategoryList(List<BookCategory> listOfCategories)
         {
+            Console.WriteLine();
             Console.WriteLine("Result for categories: ");
             foreach (var category in listOfCategories)
             {
@@ -70,6 +71,7 @@ namespace WebbShopFrontInlamning.Views
         /// <param name="details"></param>
         public static void DisplayDetails(string details)
         {
+            Console.WriteLine();
             Console.WriteLine(details);
         }
 

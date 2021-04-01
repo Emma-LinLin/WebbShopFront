@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WebbShopFrontInlamning.Views
 {
@@ -14,6 +12,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void DisplayErrorMessage()
         {
+            Console.WriteLine();
             Console.WriteLine("Oops, something went wrong!");
         }
 
@@ -22,6 +21,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void DisplaySelectMessage()
         {
+            Console.WriteLine();
             Console.WriteLine("Please select one of the above: ");
         }
 
@@ -38,6 +38,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void DisplaySuccessMessage()
         {
+            Console.WriteLine();
             Console.WriteLine("Success!");
         }
 
@@ -46,6 +47,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void DisplayNonAvailableMessage()
         {
+            Console.WriteLine();
             Console.WriteLine("Option is non available");
         }
     }

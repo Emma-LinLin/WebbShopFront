@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WebbShopFrontInlamning.Views
 {
@@ -14,9 +12,9 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void StartPage()
         {
+            Console.WriteLine();
             Console.WriteLine("What are you in the mood for?");
             Console.WriteLine("These books are available right now!");
-            Console.WriteLine();
         }
 
         /// <summary>

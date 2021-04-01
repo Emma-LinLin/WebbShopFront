@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
 
@@ -40,11 +38,9 @@ namespace WebbShopFrontInlamning.Controllers
                     AccountViews.LoginSuccess();
                     return user;
                 }
-                else
-                {
-                    AccountViews.LoginFailed();
-                }
             }
+
+            AccountViews.LoginFailed();
             return 0;
         }
     }

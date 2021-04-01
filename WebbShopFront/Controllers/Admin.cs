@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WebbShopFrontInlamning.Helpers;
 using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
@@ -132,10 +129,10 @@ namespace WebbShopFrontInlamning.Controllers
         private void AddBook(int adminId)
         {
             AdminView.AddBookPage();
-            string title = Console.ReadLine();
-            string author = Console.ReadLine();
-            int price = InputHelper.ParseInput();
-            int amount = InputHelper.ParseInput();
+            var title = Console.ReadLine();
+            var author = Console.ReadLine();
+            var price = InputHelper.ParseInput();
+            var amount = InputHelper.ParseInput();
 
             if(title != "" && author != "" && price != 0 && amount != 0)
             {
@@ -156,15 +153,10 @@ namespace WebbShopFrontInlamning.Controllers
         /// <param name="adminId"></param>
         private void AddBookToCategory(int adminId)
         {
-            new Book().FindAllAvailableBooks();
+            AdminView.AddBookCategory();
+            new Book().SearchBooksByTitle();
             MessageViews.DisplaySelectMessage();
-            MessageViews.DisplayReturnMessage();
-
             var bookId = InputHelper.ParseInput();
-            if(bookId == 0)
-            {
-                return;
-            }
 
             new Book().ViewAllCategories();
             MessageViews.DisplaySelectMessage();
@@ -176,13 +168,17 @@ namespace WebbShopFrontInlamning.Controllers
                 return;
             }
 
-            WebbShopAPI api = new WebbShopAPI();
-            var result = api.AddBookToCategory(adminId, bookId, categoryId);
-            if (result)
+            if(bookId != 0 && categoryId != 0)
             {
-                MessageViews.DisplaySuccessMessage();
-                return;
+                WebbShopAPI api = new WebbShopAPI();
+                var result = api.AddBookToCategory(adminId, bookId, categoryId);
+                if (result)
+                {
+                    MessageViews.DisplaySuccessMessage();
+                    return;
+                }
             }
+            
             MessageViews.DisplayErrorMessage();
         }
 
@@ -216,10 +212,20 @@ namespace WebbShopFrontInlamning.Controllers
            ManageAccountViews.AddAccount();
             var userName = Console.ReadLine();
             var password = Console.ReadLine();
-            if(userName != "")
+            if(userName != "" && password != "")
             {
                 WebbShopAPI api = new WebbShopAPI();
                 var result = api.AddUser(adminId, userName, password);
+                if (result)
+                {
+                    MessageViews.DisplaySuccessMessage();
+                    return;
+                }
+            }
+            if (userName != "" && password == "")
+            {
+                WebbShopAPI api = new WebbShopAPI();
+                var result = api.AddUser(adminId, userName);
                 if (result)
                 {
                     MessageViews.DisplaySuccessMessage();
@@ -239,7 +245,6 @@ namespace WebbShopFrontInlamning.Controllers
             var listOfUsers = api.ListUsers(adminId);
             if (listOfUsers != null)
             {
-                listOfUsers.OrderBy(u => u.ID);
                 AdminView.DisplayUsers(listOfUsers);
             }
             MessageViews.DisplaySelectMessage();
@@ -269,7 +274,6 @@ namespace WebbShopFrontInlamning.Controllers
             var listOfUsers = api.ListUsers(adminId);
             if (listOfUsers != null)
             {
-                listOfUsers.OrderBy(u => u.ID);
                 AdminView.DisplayUsers(listOfUsers);
             }
             MessageViews.DisplaySelectMessage();
@@ -299,7 +303,6 @@ namespace WebbShopFrontInlamning.Controllers
             var listOfUsers = api.ListUsers(adminId);
             if (listOfUsers != null)
             {
-                listOfUsers.OrderBy(u => u.ID);
                 AdminView.DisplayUsers(listOfUsers);
             }
             MessageViews.DisplaySelectMessage();
@@ -329,9 +332,9 @@ namespace WebbShopFrontInlamning.Controllers
             var listOfUsers = api.ListUsers(adminId);
             if(listOfUsers != null)
             {
-                listOfUsers.OrderBy(u => u.ID);
                 AdminView.DisplayUsers(listOfUsers);
             }
+
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
             var userId = InputHelper.ParseInput();
@@ -346,6 +349,7 @@ namespace WebbShopFrontInlamning.Controllers
                 MessageViews.DisplaySuccessMessage();
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -359,12 +363,13 @@ namespace WebbShopFrontInlamning.Controllers
             AdminView.SetAmountPage();
             MessageViews.DisplayReturnMessage();
 
-            int bookId = InputHelper.ParseInput();
-            int newAmount = InputHelper.ParseInput();
+            var bookId = InputHelper.ParseInput();
             if(bookId == 0)
             {
                 return;
             }
+
+            var newAmount = InputHelper.ParseInput();
 
             WebbShopAPI api = new WebbShopAPI();
             bool result = api.SetAmount(adminId, bookId, newAmount);
@@ -381,13 +386,12 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows an admin user to view all users
         /// </summary>
         /// <param name="adminId"></param>
-        public void ViewAllUsers(int adminId)
+        private void ViewAllUsers(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var listOfUsers = api.ListUsers(adminId);
             if(listOfUsers != null)
             {
-                listOfUsers.OrderBy(u => u.ID);
                 AdminView.DisplayUsers(listOfUsers);
                 return;
             }
@@ -398,7 +402,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows an admin user to view all sold books
         /// </summary>
         /// <param name="adminId"></param>
-        public void ViewAllSoldItems(int adminId)
+        private void ViewAllSoldItems(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var listOfSoldItems = api.SoldItems(adminId);
@@ -414,7 +418,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows an admin user to see which customer bought the most books
         /// </summary>
         /// <param name="adminId"></param>
-        public void ViewBestCustomer(int adminId)
+        private void ViewBestCustomer(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var customerId = api.BestCustomer(adminId);
@@ -430,7 +434,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows admin user to view the sum of all sold books
         /// </summary>
         /// <param name="adminId"></param>
-        public void ViewTotalIncome(int adminId)
+        private void ViewTotalIncome(int adminId)
         {
             WebbShopAPI api = new WebbShopAPI();
             var totalIncome = api.MoneyEarned(adminId);
@@ -446,7 +450,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows an admin user to find another user
         /// </summary>
         /// <param name="adminId"></param>
-        public void FindUser(int adminId)
+        private void FindUser(int adminId)
         {
             AdminView.SearchPage();
             var keyword = Console.ReadLine();
@@ -456,7 +460,6 @@ namespace WebbShopFrontInlamning.Controllers
                 var listOfUsers = api.FindUser(adminId, keyword);
                 if(listOfUsers != null)
                 {
-                    listOfUsers.OrderBy(u => u.ID);
                     AdminView.DisplayUsers(listOfUsers);
                     return;
                 }
@@ -468,11 +471,12 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows an admin user to update an existing book
         /// </summary>
         /// <param name="adminId"></param>
-        public void UpdateBook(int adminId)
+        private void UpdateBook(int adminId)
         {
             new Book().FindAllAvailableBooks();
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
+            
             var bookId = InputHelper.ParseInput();
             if(bookId == 0)
             {
@@ -480,9 +484,10 @@ namespace WebbShopFrontInlamning.Controllers
             }
 
             AdminView.UpdateBookPage();
-            string title = Console.ReadLine();
-            string author = Console.ReadLine();
-            int price = InputHelper.ParseInput();
+            var title = Console.ReadLine();
+            var author = Console.ReadLine();
+            var price = InputHelper.ParseInput();
+
             if(title != "" && author != "" && price != 0)
             {
                 WebbShopAPI api = new WebbShopAPI();
@@ -493,6 +498,7 @@ namespace WebbShopFrontInlamning.Controllers
                     return;
                 }
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -500,11 +506,12 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows admin user to update an existing category
         /// </summary>
         /// <param name="adminId"></param>
-        public void UpdateCategory(int adminId)
+        private void UpdateCategory(int adminId)
         {
             new Book().ViewAllCategories();
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
+            
             var categoryId = InputHelper.ParseInput();
             if(categoryId == 0)
             {
@@ -523,6 +530,7 @@ namespace WebbShopFrontInlamning.Controllers
                     return;
                 }
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -530,7 +538,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows admin user to delete book
         /// </summary>
         /// <param name="adminId"></param>
-        public void DeleteBook(int adminId)
+        private void DeleteBook(int adminId)
         {
             new Book().FindAllAvailableBooks();
             MessageViews.DisplaySelectMessage();
@@ -549,6 +557,7 @@ namespace WebbShopFrontInlamning.Controllers
                 MessageViews.DisplaySuccessMessage();
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -556,11 +565,12 @@ namespace WebbShopFrontInlamning.Controllers
         /// Allows admin user to delete book category
         /// </summary>
         /// <param name="adminId"></param>
-        public void DeleteCategory(int adminId)
+        private void DeleteCategory(int adminId)
         {
             new Book().ViewAllCategories();
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
+
             var categoryId = InputHelper.ParseInput();
             if (categoryId == 0)
             {
@@ -574,6 +584,7 @@ namespace WebbShopFrontInlamning.Controllers
                 MessageViews.DisplaySuccessMessage();
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
     }

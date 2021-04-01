@@ -17,14 +17,12 @@ namespace WebbShopFrontInlamning.Controllers
         /// <param name="userId"></param>
         public void Run(int userId)
         {
-            if(userId == 0)
+            if(userId != 0)
             {
-                return;
+                WebbShopAPI api = new WebbShopAPI();
+                AccountViews.LogoutUser();
+                api.Logout(userId);
             }
-
-            WebbShopAPI api = new WebbShopAPI();
-            AccountViews.LogoutUser();
-            api.Logout(userId);
         }
     }
 }

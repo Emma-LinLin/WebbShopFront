@@ -31,6 +31,7 @@ namespace WebbShopFrontInlamning.Controllers
                 {
                     break;
                 }
+
                 PurchaseViews.DisplayPurchaseMeny();
                 MessageViews.DisplayReturnMessage();
                 var input = InputHelper.ParseInput();
@@ -38,6 +39,7 @@ namespace WebbShopFrontInlamning.Controllers
                 {
                     break;
                 }
+
                 switch (input)
                 {
                     case 1:
@@ -67,6 +69,7 @@ namespace WebbShopFrontInlamning.Controllers
                 BookViews.DisplayDetails(bookDetails);
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -86,6 +89,7 @@ namespace WebbShopFrontInlamning.Controllers
                     MessageViews.DisplaySuccessMessage();
                     return;
                 }
+
                 MessageViews.DisplayErrorMessage();
             }
         }

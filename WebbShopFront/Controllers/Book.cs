@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WebbShopFrontInlamning.Helpers;
 using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
@@ -14,8 +13,6 @@ namespace WebbShopFrontInlamning.Controllers
     /// </summary>
     class Book
     {
-        private WebbShopAPI api = new WebbShopAPI();
-
         /// <summary>
         /// Runs the book functionality page
         /// </summary>
@@ -60,8 +57,9 @@ namespace WebbShopFrontInlamning.Controllers
         /// <returns></returns>
         public List<Books> GetAllBooks()
         {
-            List<Books> listOfBooks = new List<Books>();
+            var listOfBooks = new List<Books>();
 
+            WebbShopAPI api = new WebbShopAPI();
             var listOfCategories = api.GetCategories().ToList();
             if(listOfCategories != null)
             {
@@ -80,14 +78,15 @@ namespace WebbShopFrontInlamning.Controllers
         /// </summary>
         public void ViewAllCategories()
         {
+            WebbShopAPI api = new WebbShopAPI();
             var listOfCategories = api.GetCategories().ToList();
             if(listOfCategories != null)
             {
                 BookViews.DisplayCategoryList(listOfCategories);
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
-            return;
         }
 
         /// <summary>
@@ -99,6 +98,7 @@ namespace WebbShopFrontInlamning.Controllers
             var keyword = Console.ReadLine();
             if (keyword != "")
             {
+                WebbShopAPI api = new WebbShopAPI();
                 var listOfCategories = api.GetCategories(keyword).ToList();
                 if (listOfCategories != null)
                 {
@@ -108,7 +108,6 @@ namespace WebbShopFrontInlamning.Controllers
             }
 
             MessageViews.DisplayErrorMessage();
-            return;
         }
 
         /// <summary>
@@ -120,6 +119,7 @@ namespace WebbShopFrontInlamning.Controllers
             var keyword = Console.ReadLine();
             if (keyword != "")
             {
+                WebbShopAPI api = new WebbShopAPI();
                 var listOfBooks = api.GetAuthor(keyword).ToList();
                 if (listOfBooks != null)
                 {
@@ -129,7 +129,6 @@ namespace WebbShopFrontInlamning.Controllers
             }
 
             MessageViews.DisplayErrorMessage();
-            return;
         }
 
         /// <summary>
@@ -141,6 +140,7 @@ namespace WebbShopFrontInlamning.Controllers
             var keyword = Console.ReadLine();
             if (keyword != "")
             {
+                WebbShopAPI api = new WebbShopAPI();
                 var listOfBooks = api.GetBooks(keyword).ToList();
                 if (listOfBooks != null)
                 {
@@ -150,7 +150,6 @@ namespace WebbShopFrontInlamning.Controllers
             }
 
             MessageViews.DisplayErrorMessage();
-            return;
         }
 
         /// <summary>
@@ -161,13 +160,12 @@ namespace WebbShopFrontInlamning.Controllers
             var listOfBooks = GetAllBooks();
             if(listOfBooks.Count != 0)
             {
-                listOfBooks.OrderBy(b => b.ID);
-                BookViews.DisplayAvailableBooks(listOfBooks);
+                var sortBookList = listOfBooks.OrderBy(b => b.ID).ToList();
+                BookViews.DisplayAvailableBooks(sortBookList);
                 return;
             }
 
             MessageViews.DisplayErrorMessage();
-            return;
         }
 
         

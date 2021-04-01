@@ -15,6 +15,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void StartPage()
         {
+            Console.WriteLine();
             Console.WriteLine("You have to be logged in to proceed.");
         }
 
@@ -23,7 +24,6 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void AdminPage()
         {
-            Console.WriteLine("Admin page");
             Console.WriteLine();
             Console.WriteLine("1. Add book");
             Console.WriteLine("2. Set Amount");
@@ -52,6 +52,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void VerifyAdminFailed()
         {
+            Console.WriteLine();
             Console.WriteLine("You're not authorized.");
         }
 
@@ -61,8 +62,6 @@ namespace WebbShopFrontInlamning.Views
         public static void AddBookPage()
         {
             Console.WriteLine();
-            Console.WriteLine("Add book");
-            Console.WriteLine();
             Console.WriteLine("Please fill in the following");
             Console.WriteLine("1. Title");
             Console.WriteLine("2. Author");
@@ -71,12 +70,19 @@ namespace WebbShopFrontInlamning.Views
         }
 
         /// <summary>
+        /// Asks for which book will be added to category
+        /// </summary>
+        public static void AddBookCategory()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Which book would you like to add to category? You can search by title");
+        }
+
+        /// <summary>
         /// Displays the information needed to add category
         /// </summary>
         public static void AddCategoryPage()
         {
-            Console.WriteLine();
-            Console.WriteLine("Add category");
             Console.WriteLine();
             Console.WriteLine("Please fill in the following");
             Console.WriteLine("1. Genere");
@@ -87,8 +93,6 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void UpdateBookPage()
         {
-            Console.WriteLine();
-            Console.WriteLine("Update book");
             Console.WriteLine();
             Console.WriteLine("Please fill in the following");
             Console.WriteLine("1. Title");
@@ -111,8 +115,6 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void SetAmountPage()
         {
-            Console.WriteLine();
-            Console.WriteLine("Set amount");
             Console.WriteLine();
             Console.WriteLine("Please fill in the following ");
             Console.WriteLine("1. Book number: ");
@@ -164,6 +166,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void DisplaySoldItems(List<SoldBooks> listOfSoldItems)
         {
+            Console.WriteLine();
             Console.WriteLine("Search result for books: ");
             foreach (var book in listOfSoldItems)
             {

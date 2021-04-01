@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WebbShopFrontInlamning.Views
 {
@@ -14,7 +12,6 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void LoginPage()
         {
-            Console.WriteLine("Login page");
             Console.WriteLine();
             Console.WriteLine("Please fill in the following: ");
             Console.WriteLine("1. User name: ");
@@ -22,18 +19,20 @@ namespace WebbShopFrontInlamning.Views
         }
 
         /// <summary>
-        /// Displays if login was successful
+        /// Displays message if login was successful
         /// </summary>
         public static void LoginSuccess()
         {
+            Console.WriteLine();
             Console.WriteLine("Login successful!");
         }
 
         /// <summary>
-        /// Displays if login failed
+        /// Displays message if login failed
         /// </summary>
         public static void LoginFailed()
         {
+            Console.WriteLine();
             Console.WriteLine("You don't seem to have an account, please register.");
         }
 
@@ -42,6 +41,7 @@ namespace WebbShopFrontInlamning.Views
         /// </summary>
         public static void LogoutUser()
         {
+            Console.WriteLine();
             Console.WriteLine("Have a nice day!");
         }
     }

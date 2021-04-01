@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
 
@@ -45,6 +43,7 @@ namespace WebbShopFrontInlamning.Controllers
                 WebbShopAPI api = new WebbShopAPI();
                 return api.Register(userName, userPassword, verifyPassword);
             }
+
             return false;
         }
     }
