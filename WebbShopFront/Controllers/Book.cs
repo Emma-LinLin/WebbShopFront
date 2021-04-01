@@ -82,7 +82,8 @@ namespace WebbShopFrontInlamning.Controllers
             var listOfCategories = api.GetCategories().ToList();
             if(listOfCategories != null)
             {
-                BookViews.DisplayCategoryList(listOfCategories);
+                var sortCategoryList = listOfCategories.OrderBy(c => c.ID).ToList();
+                BookViews.DisplayCategoryList(sortCategoryList);
                 return;
             }
 

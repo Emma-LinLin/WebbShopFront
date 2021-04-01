@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using WebbShopFrontInlamning.Helpers;
 using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
@@ -52,7 +53,7 @@ namespace WebbShopFrontInlamning.Controllers
                     case 4:
                         FindUser(userId);
                         break;
-                    case 5:;
+                    case 5:
                         UpdateBook(userId);
                         break;
                     case 6:
@@ -144,6 +145,7 @@ namespace WebbShopFrontInlamning.Controllers
                     return;
                 }
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -200,6 +202,7 @@ namespace WebbShopFrontInlamning.Controllers
                     return;
                 }
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -232,7 +235,8 @@ namespace WebbShopFrontInlamning.Controllers
                     return;
                 }
             }
-            MessageViews.DisplayErrorMessage();
+
+            ManageAccountViews.RegisterFailed();
         }
 
         /// <summary>
@@ -241,12 +245,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// <param name="adminId"></param>
         private void ActivateUser(int adminId)
         {
-            WebbShopAPI api = new WebbShopAPI();
-            var listOfUsers = api.ListUsers(adminId);
-            if (listOfUsers != null)
-            {
-                AdminView.DisplayUsers(listOfUsers);
-            }
+            ViewAllUsers(adminId);
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
             var userId = InputHelper.ParseInput();
@@ -255,6 +254,7 @@ namespace WebbShopFrontInlamning.Controllers
                 return;
             }
 
+            WebbShopAPI api = new WebbShopAPI();
             bool result = api.ActivateUser(adminId, userId);
             if (result)
             {
@@ -270,12 +270,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// <param name="adminId"></param>
         private void DemoteUser(int adminId)
         {
-            WebbShopAPI api = new WebbShopAPI();
-            var listOfUsers = api.ListUsers(adminId);
-            if (listOfUsers != null)
-            {
-                AdminView.DisplayUsers(listOfUsers);
-            }
+            ViewAllUsers(adminId);
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
             var userId = InputHelper.ParseInput();
@@ -284,6 +279,7 @@ namespace WebbShopFrontInlamning.Controllers
                 return;
             }
 
+            WebbShopAPI api = new WebbShopAPI();
             bool result = api.Demote(adminId, userId);
             if (result)
             {
@@ -299,12 +295,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// <param name="adminId"></param>
         private void InactivateUser(int adminId)
         {
-            WebbShopAPI api = new WebbShopAPI();
-            var listOfUsers = api.ListUsers(adminId);
-            if (listOfUsers != null)
-            {
-                AdminView.DisplayUsers(listOfUsers);
-            }
+            ViewAllUsers(adminId);
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
             var userId = InputHelper.ParseInput();
@@ -313,12 +304,14 @@ namespace WebbShopFrontInlamning.Controllers
                 return;
             }
 
+            WebbShopAPI api = new WebbShopAPI();
             bool result = api.InactivateUser(adminId, userId);
             if (result)
             {
                 MessageViews.DisplaySuccessMessage();
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -328,13 +321,7 @@ namespace WebbShopFrontInlamning.Controllers
         /// <param name="adminId"></param>
         private void PromoteUser(int adminId)
         {
-            WebbShopAPI api = new WebbShopAPI();
-            var listOfUsers = api.ListUsers(adminId);
-            if(listOfUsers != null)
-            {
-                AdminView.DisplayUsers(listOfUsers);
-            }
-
+            ViewAllUsers(adminId);
             MessageViews.DisplaySelectMessage();
             MessageViews.DisplayReturnMessage();
             var userId = InputHelper.ParseInput();
@@ -343,6 +330,7 @@ namespace WebbShopFrontInlamning.Controllers
                 return;
             }
 
+            WebbShopAPI api = new WebbShopAPI();
             bool result = api.Promote(adminId, userId);
             if (result)
             {
@@ -392,9 +380,11 @@ namespace WebbShopFrontInlamning.Controllers
             var listOfUsers = api.ListUsers(adminId);
             if(listOfUsers != null)
             {
-                AdminView.DisplayUsers(listOfUsers);
+                var sortUserList = listOfUsers.OrderBy(u => u.ID).ToList();
+                AdminView.DisplayUsers(sortUserList);
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -411,6 +401,7 @@ namespace WebbShopFrontInlamning.Controllers
                 AdminView.DisplaySoldItems(listOfSoldItems);
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -427,6 +418,7 @@ namespace WebbShopFrontInlamning.Controllers
                 AdminView.DisplayBestCustomer(customerId);
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -443,6 +435,7 @@ namespace WebbShopFrontInlamning.Controllers
                 AdminView.DisplayMoneyEarned(totalIncome);
                 return;
             }
+
             MessageViews.DisplayErrorMessage();
         }
 
@@ -460,10 +453,12 @@ namespace WebbShopFrontInlamning.Controllers
                 var listOfUsers = api.FindUser(adminId, keyword);
                 if(listOfUsers != null)
                 {
-                    AdminView.DisplayUsers(listOfUsers);
+                    var sortUserList = listOfUsers.OrderBy(u => u.ID).ToList();
+                    AdminView.DisplayUsers(sortUserList);
                     return;
                 }
             }
+
             MessageViews.DisplayErrorMessage();
         }
 

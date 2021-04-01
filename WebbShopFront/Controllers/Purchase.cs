@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WebbShopFrontInlamning.Helpers;
+﻿using WebbShopFrontInlamning.Helpers;
 using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
 
@@ -89,9 +86,8 @@ namespace WebbShopFrontInlamning.Controllers
                     MessageViews.DisplaySuccessMessage();
                     return;
                 }
-
-                MessageViews.DisplayErrorMessage();
             }
+            PurchaseViews.DisplayErrorMessage();
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WebbShopFrontInlamning.Helpers;
+﻿using WebbShopFrontInlamning.Helpers;
 using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
 using WebbShopInlamningsUppgift.Database;
@@ -13,7 +10,7 @@ namespace WebbShopFrontInlamning.Controllers
     /// </summary>
     class Home
     {
-        private int userId;
+        private int userId = 0;
 
         /// <summary>
         /// Runs the home functionality page

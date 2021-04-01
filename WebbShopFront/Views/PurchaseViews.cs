@@ -18,6 +18,15 @@ namespace WebbShopFrontInlamning.Views
         }
 
         /// <summary>
+        /// Displays an error message if user is not logged in
+        /// </summary>
+        public static void DisplayErrorMessage()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Oops, you need to login to proceed with your purchase!");
+        }
+
+        /// <summary>
         /// Displays an option to view or purchase
         /// </summary>
         public static void DisplayPurchaseMeny()

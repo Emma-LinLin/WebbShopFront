@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WebbShopFrontInlamning.Views;
+﻿using WebbShopFrontInlamning.Views;
 using WebbShopInlamningsUppgift;
 
 namespace WebbShopFrontInlamning.Controllers
@@ -20,9 +17,10 @@ namespace WebbShopFrontInlamning.Controllers
             if(userId != 0)
             {
                 WebbShopAPI api = new WebbShopAPI();
-                AccountViews.LogoutUser();
                 api.Logout(userId);
             }
+
+            AccountViews.LogoutUser();
         }
     }
 }
